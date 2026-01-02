@@ -20,7 +20,7 @@ const LANGUAGES = [
   { code: 'ar', name: 'Arabic', speechCode: 'ar-SA' },
 ];
 
-type PipelineStatus = 'idle' | 'listening' | 'translating' | 'speaking';
+type PipelineStatus = 'idle' | 'listening' | 'translating' | 'speaking' ;
 
 export default function TranslationPipeline() {
   // Source and target language
