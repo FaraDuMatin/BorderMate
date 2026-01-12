@@ -203,7 +203,6 @@ const wasSpeakingRef = useRef(false);
       <div className="text-center">
         <h1 className="text-3xl font-bold mb-2">🌍 BorderMate</h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Speak with anyone, anywhere, in real-time!
         </p>
       </div>
 
@@ -252,11 +251,11 @@ const wasSpeakingRef = useRef(false);
       </div>
 
       {/* Status Indicator */}
-      <div className="text-center">
+      {/* <div className="text-center">
         <span className={`text-xl font-semibold ${statusDisplay.color}`}>
           {statusDisplay.text}
         </span>
-      </div>
+      </div> */}
 
       {/* Main Controls */}
       <div className="flex justify-center gap-4">
