@@ -3,7 +3,7 @@ export default function Header() {
     <div className="text-center py-8">
       <h1 className="text-5xl font-extrabold tracking-tight flex items-center justify-center">
         <img
-          src="/favicon.png"
+          src="/logo.png"
           alt="Logo"
           className="w-12 h-12 mr-4 drop-shadow-md"
         />
