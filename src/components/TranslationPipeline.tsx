@@ -4,6 +4,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
 import { useSpeechSynthesis } from "@/hooks/useSpeechSynthesis";
 import { translate } from "@/services/translationService";
+import Header from "@/components/ui/Header";
+import Controls from "@/components/ui/Controls";
+import LanguageSelection from "@/components/ui/LangageSelection";
+import TextDisplay from "@/components/ui/TextDisplay";
 
 // Language configurations
 const LANGUAGES = [
@@ -33,8 +37,6 @@ export default function TranslationPipeline() {
   const [translatedText, setTranslatedText] = useState("");
   const [error, setError] = useState("");
 
-
-
   // Hooks
   const {
     transcript,
@@ -57,12 +59,12 @@ export default function TranslationPipeline() {
   // Refs for managing async operations
   const lastProcessedText = useRef("");
   const translationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-const wasSpeakingRef = useRef(false);
-  
+  const wasSpeakingRef = useRef(false);
+
   // Refs to track current language values for swapping
   const sourceLangRef = useRef(sourceLang);
   const targetLangRef = useRef(targetLang);
-  
+
   // Keep refs in sync with state
   useEffect(() => {
     sourceLangRef.current = sourceLang;
@@ -126,7 +128,7 @@ const wasSpeakingRef = useRef(false);
         setStatus("idle");
       }
     },
-    [sourceLang, targetLang, speak, stopSTT]
+    [sourceLang, targetLang, speak, stopSTT],
   );
 
   // Watch for transcript changes - debounced translation
@@ -162,7 +164,7 @@ const wasSpeakingRef = useRef(false);
       const newTarget = sourceLangRef.current;
       setSourceLang(newSource);
       setTargetLang(newTarget);
-      setStatus('idle');
+      setStatus("idle");
     }
   }, [isSpeaking]);
 
@@ -173,7 +175,6 @@ const wasSpeakingRef = useRef(false);
       setStatus("idle");
     }
   }, [sttError]);
-
 
   // Swap languages
   const swapLanguages = () => {
@@ -199,82 +200,53 @@ const wasSpeakingRef = useRef(false);
 
   return (
     <div className="w-full max-w-4xl mx-auto p-6 space-y-6">
-      {/* Header */}
-      <div className="text-center">
-        <h1 className="text-3xl font-bold mb-2">🌍 BorderMate</h1>
-        <p className="text-gray-600 dark:text-gray-400">
-        </p>
-      </div>
+      {/*********************************************************************************************************************/}
+      <Header />
+      
+      {/*********************************************************************************************************************/}
+      
+      <TextDisplay
+        sourceLang={sourceLang}
+        targetLang={targetLang}
+        status={status}
+        languages={LANGUAGES}
+        fullTranscript={fullTranscript}
+        originalText={originalText}
+        interimTranscript={interimTranscript}
+        translatedText={translatedText}
+      />
 
-      {/* Language Selection */}
-      <div className="flex items-center justify-center gap-4 flex-wrap">
-        <div className="flex flex-col items-center">
-          {/* <label className="text-sm text-gray-500 mb-1">From</label> */}
-          <select
-            value={sourceLang}
-            onChange={(e) => setSourceLang(e.target.value)}
-            className="px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-600"
-            disabled={status !== "idle"}
-          >
-            {LANGUAGES.map((lang) => (
-              <option key={lang.code} value={lang.code}>
-                {lang.name}
-              </option>
-            ))}
-          </select>
-        </div>
+      {/*********************************************************************************************************************/}
 
-        <button
-          onClick={swapLanguages}
-          disabled={status !== "idle"}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 disabled:opacity-50"
-          title="Swap languages"
-        >
-          ⇄
-        </button>
+      <Controls 
+        status={status} 
+        startListening={startListening} 
+        stopPipeline={stopPipeline} 
+      />
 
-        <div className="flex flex-col items-center">
-          {/* <label className="text-sm text-gray-500 mb-1">To</label> */}
-          <select
-            value={targetLang}
-            onChange={(e) => setTargetLang(e.target.value)}
-            className="px-4 py-2 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-600"
-            disabled={status !== "idle"}
-          >
-            {LANGUAGES.map((lang) => (
-              <option key={lang.code} value={lang.code}>
-                {lang.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+      {/*********************************************************************************************************************/}
 
+
+      <LanguageSelection
+        sourceLang={sourceLang}
+        targetLang={targetLang}
+        setSourceLang={setSourceLang}
+        setTargetLang={setTargetLang}
+        swapLanguages={swapLanguages}
+        status={status}
+        languages={LANGUAGES}
+      />
+
+
+     
+      {/*********************************************************************************************************************/}
+     
       {/* Status Indicator */}
       {/* <div className="text-center">
         <span className={`text-xl font-semibold ${statusDisplay.color}`}>
           {statusDisplay.text}
         </span>
       </div> */}
-
-      {/* Main Controls */}
-      <div className="flex justify-center gap-4">
-        {status === "idle" ? (
-          <button
-            onClick={startListening}
-            className="px-8 py-4 bg-green-500 text-white rounded-xl text-lg font-semibold hover:bg-green-600 transition-colors shadow-lg hover:shadow-xl"
-          >
-            🎤 Start Speaking
-          </button>
-        ) : (
-          <button
-            onClick={stopPipeline}
-            className="px-8 py-4 bg-red-500 text-white rounded-xl text-lg font-semibold hover:bg-red-600 transition-colors shadow-lg hover:shadow-xl"
-          >
-            ⏹️ Stop
-          </button>
-        )}
-      </div>
 
       {/* Error Display */}
       {error && (
@@ -283,8 +255,12 @@ const wasSpeakingRef = useRef(false);
         </div>
       )}
 
+
+      {/*********************************************************************************************************************/}
+
+
       {/* Pipeline Visualization */}
-      <div className="flex items-center justify-center gap-2 text-xl text-gray-500">
+      {/* <div className="flex items-center justify-center gap-2 text-xl text-gray-500">
         <span
           className={status === "listening" ? "text-green-500 font-bold" : ""}
         >
@@ -302,76 +278,13 @@ const wasSpeakingRef = useRef(false);
         >
           🔊 TTS
         </span>
-      </div>
+      </div> */}
 
-      {/* Text Display Panels */}
-      <div className="grid md:grid-cols-2 gap-4">
-        {/* Original Text (Source Language) */}
-        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold text-blue-700 dark:text-blue-400">
-              🎤{" "}
-              {LANGUAGES.find((l) => l.code === sourceLang)?.name || "Original"}
-            </h3>
-            {status === "listening" && (
-              <span className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-            )}
-          </div>
-          <div className="min-h-[120px] p-3 bg-white dark:bg-gray-800 rounded border">
-            <p className="text-gray-800 dark:text-gray-200">
-              {fullTranscript || originalText || (
-                <span className="text-gray-400 italic">
-                  {status === "listening"
-                    ? "Speak now..."
-                    : "Your speech will appear here"}
-                </span>
-              )}
-              {interimTranscript && (
-                <span className="text-gray-400 italic">
-                  {interimTranscript}
-                </span>
-              )}
-            </p>
-          </div>
-        </div>
 
-        {/* Translated Text (Target Language) */}
-        <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold text-green-700 dark:text-green-400">
-              🔊{" "}
-              {LANGUAGES.find((l) => l.code === targetLang)?.name ||
-                "Translation"}
-            </h3>
-            {status === "speaking" && (
-              <span className="w-3 h-3 bg-purple-500 rounded-full animate-pulse" />
-            )}
-          </div>
-          <div className="min-h-[120px] p-3 bg-white dark:bg-gray-800 rounded border">
-            <p className="text-gray-800 dark:text-gray-200">
-              {translatedText || (
-                <span className="text-gray-400 italic">
-                  {status === "translating"
-                    ? "Translating..."
-                    : "Translation will appear here"}
-                </span>
-              )}
-            </p>
-          </div>
+      {/*********************************************************************************************************************/}
 
-          {/* Manual speak button */}
-          {translatedText && !isSpeaking && (
-            <button
-              onClick={() =>
-                speak(translatedText, { lang: getSpeechCode(targetLang) })
-              }
-              className="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg text-sm hover:bg-green-600"
-            >
-              🔊 Replay
-            </button>
-          )}
-        </div>
-      </div>
+
+      
     </div>
   );
 }

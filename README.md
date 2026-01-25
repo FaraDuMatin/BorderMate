@@ -1,7 +1,5 @@
 # 🌍 BorderMate
 
-> Breaking language barriers in real-time communication
-
 **[Live Demo](https://faradumatin.github.io/BorderMate/)**
 
 ---
