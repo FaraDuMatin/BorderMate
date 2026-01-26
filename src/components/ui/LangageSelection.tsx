@@ -71,8 +71,8 @@ export default function LanguageSelection({
         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="sm:w-7 sm:h-7 md:w-8 md:h-8">
           <defs>
             <linearGradient id="flipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style={{ stopColor: "#DECBA4", stopOpacity: 1 }} />
-              <stop offset="100%" style={{ stopColor: "#3E5151", stopOpacity: 1 }} />
+              <stop offset="0%" style={{ stopColor: "#3E5151", stopOpacity: 1 }} />
+              <stop offset="100%" style={{ stopColor: "#DECBA4", stopOpacity: 1 }} />
             </linearGradient>
           </defs>
           <g data-name="Layer 2">
