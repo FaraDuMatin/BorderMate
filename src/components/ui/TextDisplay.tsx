@@ -30,12 +30,12 @@ export default function TextDisplay({
   translatedText,
 }: TextDisplayProps) {
   return (
-    <div className="grid md:grid-cols-2 gap-4">
+    <div className="grid md:grid-cols-2 gap-3 sm:gap-4 px-2 sm:px-0">
       {/* Original Text (Source Language) */}
-      <div className="p-4 bg-transparent backdrop-blur-sm rounded-2xl border border-[#3E5151]/50 shadow-lg">
+      <div className="p-3 sm:p-4 bg-transparent backdrop-blur-sm rounded-2xl border border-[#3E5151]/50 shadow-lg">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="font-semibold bg-gradient-to-r from-[#3E5151] to-[#DECBA4] bg-clip-text text-transparent flex items-center gap-2">
-            <svg className="w-5 h-5" fill="none" stroke="url(#headerGradient)" viewBox="0 0 24 24">
+          <h3 className="text-sm sm:text-base font-semibold bg-gradient-to-r from-[#3E5151] to-[#DECBA4] bg-clip-text text-transparent flex items-center gap-1.5 sm:gap-2">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="url(#headerGradient)" viewBox="0 0 24 24">
               <defs>
                 <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#DECBA4" />
@@ -47,10 +47,10 @@ export default function TextDisplay({
             {languages.find((l) => l.code === sourceLang)?.name || "Original"}
           </h3>
           {status === "listening" && (
-            <span className="w-3 h-3 bg-[#DECBA4] rounded-full animate-pulse shadow-[0_0_10px_rgba(222,203,164,0.5)]" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#DECBA4] rounded-full animate-pulse shadow-[0_0_10px_rgba(222,203,164,0.5)]" />
           )}
         </div>
-        <p className="text-gray-200">
+        <p className="text-sm sm:text-base text-gray-200 min-h-[80px] sm:min-h-[100px]">
           {fullTranscript || originalText || (
             <span className="text-gray-500 italic">
               {status === "listening"
@@ -67,10 +67,10 @@ export default function TextDisplay({
       </div>
 
       {/* Translated Text (Target Language) */}
-      <div className="p-4 bg-transparent backdrop-blur-sm rounded-2xl border border-[#3E5151]/50 shadow-lg">
+      <div className="p-3 sm:p-4 bg-transparent backdrop-blur-sm rounded-2xl border border-[#3E5151]/50 shadow-lg">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="font-semibold bg-gradient-to-r from-[#3E5151] to-[#DECBA4] bg-clip-text text-transparent flex items-center gap-2">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+          <h3 className="text-sm sm:text-base font-semibold bg-gradient-to-r from-[#3E5151] to-[#DECBA4] bg-clip-text text-transparent flex items-center gap-1.5 sm:gap-2">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none">
               <defs>
                 <linearGradient id="speakerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#DECBA4" />
@@ -82,10 +82,10 @@ export default function TextDisplay({
             {languages.find((l) => l.code === targetLang)?.name || "Translation"}
           </h3>
           {status === "speaking" && (
-            <span className="w-3 h-3 bg-[#DECBA4] rounded-full animate-pulse shadow-[0_0_10px_rgba(222,203,164,0.5)]" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#DECBA4] rounded-full animate-pulse shadow-[0_0_10px_rgba(222,203,164,0.5)]" />
           )}
         </div>
-        <p className="text-gray-200">
+        <p className="text-sm sm:text-base text-gray-200 min-h-[80px] sm:min-h-[100px]">
           {translatedText || (
             <span className="text-gray-500 italic">
               {status === "translating"

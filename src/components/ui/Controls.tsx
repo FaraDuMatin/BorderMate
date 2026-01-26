@@ -12,9 +12,9 @@ export default function Controls({ status, startListening, stopPipeline }: Contr
       {status === "idle" ? (
         <button
           onClick={startListening}
-          className="p-6 bg-transparent backdrop-blur-sm rounded-full border border-gray-200/20 dark:border-gray-700/30 hover:border-[#DECBA4]/50 transition-all shadow-lg hover:shadow-[0_0_30px_rgba(222,203,164,0.3)] hover:scale-105"
+          className="p-4 sm:p-6 bg-transparent backdrop-blur-sm rounded-full border border-gray-200/20 dark:border-gray-700/30 hover:border-[#DECBA4]/50 transition-all shadow-lg hover:shadow-[0_0_30px_rgba(222,203,164,0.3)] hover:scale-105"
         >
-          <svg width="64" height="64" viewBox="-3 0 19 19" xmlns="http://www.w3.org/2000/svg">
+          <svg width="48" height="48" viewBox="-3 0 19 19" xmlns="http://www.w3.org/2000/svg" className="sm:w-16 sm:h-16">
             <defs>
               <linearGradient id="micGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style={{stopColor: '#3E5151', stopOpacity: 1}} />
@@ -27,9 +27,9 @@ export default function Controls({ status, startListening, stopPipeline }: Contr
       ) : (
         <button
           onClick={stopPipeline}
-          className="p-6 bg-transparent backdrop-blur-sm rounded-full border border-gray-200/20 dark:border-gray-700/30 hover:border-[#DECBA4]/50 transition-all shadow-lg hover:shadow-[0_0_30px_rgba(222,203,164,0.3)] hover:scale-105"
+          className="p-4 sm:p-6 bg-transparent backdrop-blur-sm rounded-full border border-gray-200/20 dark:border-gray-700/30 hover:border-[#DECBA4]/50 transition-all shadow-lg hover:shadow-[0_0_30px_rgba(222,203,164,0.3)] hover:scale-105"
         >
-          <svg width="64" height="64" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <svg width="48" height="48" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="sm:w-16 sm:h-16">
             <defs>
               <linearGradient id="stopGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" style={{stopColor: '#3E5151', stopOpacity: 1}} />

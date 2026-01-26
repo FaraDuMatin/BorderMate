@@ -28,13 +28,13 @@ export default function LanguageSelection({
   languages,
 }: LanguageSelectionProps) {
   return (
-    <div className="flex items-center justify-center gap-6 flex-wrap">
+    <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 flex-wrap px-2 sm:px-0">
       {/* Source Language Select */}
       <Select.Root value={sourceLang} onValueChange={setSourceLang} disabled={status !== "idle"}>
-        <Select.Trigger className="inline-flex items-center justify-between gap-3 pl-8 pr-4 py-4 bg-transparent backdrop-blur-sm rounded-2xl border border-[#3E5151]/30 dark:border-[#3E5151]/50 text-lg font-medium text-gray-800 dark:text-gray-200 hover:border-[#DECBA4]/50 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#DECBA4]/50 disabled:opacity-50 cursor-pointer min-w-[180px]">
+        <Select.Trigger className="inline-flex items-center justify-between gap-2 sm:gap-3 pl-4 sm:pl-6 md:pl-8 pr-3 sm:pr-4 py-3 sm:py-3.5 md:py-4 bg-transparent backdrop-blur-sm rounded-2xl border border-[#3E5151]/30 dark:border-[#3E5151]/50 text-base sm:text-lg font-medium text-gray-800 dark:text-gray-200 hover:border-[#DECBA4]/50 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#DECBA4]/50 disabled:opacity-50 cursor-pointer min-w-[140px] sm:min-w-[160px] md:min-w-[180px]">
           <Select.Value />
           <Select.Icon>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </Select.Icon>
@@ -51,7 +51,7 @@ export default function LanguageSelection({
                 <Select.Item
                   key={lang.code}
                   value={lang.code}
-                  className="relative flex items-center px-8 py-3 text-lg text-gray-200 rounded-xl outline-none cursor-pointer select-none hover:bg-[#DECBA4]/10 focus:bg-[#DECBA4]/20 data-[highlighted]:bg-[#DECBA4]/20 transition-colors"
+                  className="relative flex items-center px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 text-base sm:text-lg text-gray-200 rounded-xl outline-none cursor-pointer select-none hover:bg-[#DECBA4]/10 focus:bg-[#DECBA4]/20 data-[highlighted]:bg-[#DECBA4]/20 transition-colors"
                 >
                   <Select.ItemText>{lang.name}</Select.ItemText>
                 </Select.Item>
@@ -65,10 +65,10 @@ export default function LanguageSelection({
       <button
         onClick={swapLanguages}
         disabled={status !== "idle"}
-        className="p-4 bg-transparent backdrop-blur-sm rounded-full border border-[#3E5151]/30 dark:border-[#3E5151]/50 hover:border-[#DECBA4]/50 transition-all shadow-md hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+        className="p-3 sm:p-3.5 md:p-4 bg-transparent backdrop-blur-sm rounded-full border border-[#3E5151]/30 dark:border-[#3E5151]/50 hover:border-[#DECBA4]/50 transition-all shadow-md hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
         title="Swap languages"
       >
-        <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="sm:w-7 sm:h-7 md:w-8 md:h-8">
           <defs>
             <linearGradient id="flipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" style={{ stopColor: "#DECBA4", stopOpacity: 1 }} />
@@ -93,10 +93,10 @@ export default function LanguageSelection({
 
       {/* Target Language Select */}
       <Select.Root value={targetLang} onValueChange={setTargetLang} disabled={status !== "idle"}>
-        <Select.Trigger className="inline-flex items-center justify-between gap-3 pl-8 pr-4 py-4 bg-transparent backdrop-blur-sm rounded-2xl border border-[#3E5151]/30 dark:border-[#3E5151]/50 text-lg font-medium text-gray-800 dark:text-gray-200 hover:border-[#DECBA4]/50 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#DECBA4]/50 disabled:opacity-50 cursor-pointer min-w-[180px]">
+        <Select.Trigger className="inline-flex items-center justify-between gap-2 sm:gap-3 pl-4 sm:pl-6 md:pl-8 pr-3 sm:pr-4 py-3 sm:py-3.5 md:py-4 bg-transparent backdrop-blur-sm rounded-2xl border border-[#3E5151]/30 dark:border-[#3E5151]/50 text-base sm:text-lg font-medium text-gray-800 dark:text-gray-200 hover:border-[#DECBA4]/50 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#DECBA4]/50 disabled:opacity-50 cursor-pointer min-w-[140px] sm:min-w-[160px] md:min-w-[180px]">
           <Select.Value />
           <Select.Icon>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </Select.Icon>
@@ -113,7 +113,7 @@ export default function LanguageSelection({
                 <Select.Item
                   key={lang.code}
                   value={lang.code}
-                  className="relative flex items-center px-8 py-3 text-lg text-gray-200 rounded-xl outline-none cursor-pointer select-none hover:bg-[#DECBA4]/10 focus:bg-[#DECBA4]/20 data-[highlighted]:bg-[#DECBA4]/20 transition-colors"
+                  className="relative flex items-center px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 text-base sm:text-lg text-gray-200 rounded-xl outline-none cursor-pointer select-none hover:bg-[#DECBA4]/10 focus:bg-[#DECBA4]/20 data-[highlighted]:bg-[#DECBA4]/20 transition-colors"
                 >
                   <Select.ItemText>{lang.name}</Select.ItemText>
                 </Select.Item>

@@ -199,7 +199,7 @@ export default function TranslationPipeline() {
   const statusDisplay = getStatusDisplay();
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 space-y-6">
+    <div className="w-full max-w-4xl mx-auto p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-5 md:space-y-6">
       {/*********************************************************************************************************************/}
       <Header />
       
