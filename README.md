@@ -1,4 +1,5 @@
-# 🌍 BorderMate
+![🌍](/public/logo.png "Logo") 
+# BorderMate
 
 **[Live Demo](https://faradumatin.github.io/BorderMate/)**
 
